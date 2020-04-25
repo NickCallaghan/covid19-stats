@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useSummary } from "../../hooks/useSummary";
 import { Table } from "../../components/Table/Table";
 import { NoCases } from "../../components/NoCases/NoCases";
 import { StatTile } from "../../components/StatTile/StatTile";
@@ -14,13 +13,14 @@ import {
 } from "../../helpers/dataHelper";
 
 export const Dashboard = () => {
-  // const countries = useCountries();
+  const summary = useContext(SummaryContext); //Summary data for all countries
 
-  const summary = useContext(SummaryContext);
+  // Widget data sets
   const [mostEffected, setMostEffected] = useState([]);
   const [leastEffected, setLeastEffected] = useState([]);
   const [noCases, setNoCases] = useState([]);
 
+  // Widget data sets updated when api sucessfully called
   useEffect(() => {
     if (summary.Countries && summary.Countries.length) {
       setNoCases(noCasesCountries(summary.Countries));
@@ -29,6 +29,7 @@ export const Dashboard = () => {
     }
   }, [summary]);
 
+  //Loader displays until data
   if (!summary.Global) return <Loader />;
   return (
     <div className="App">
