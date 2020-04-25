@@ -7,7 +7,7 @@ import ReactTooltip from "react-tooltip";
 import "./Table.scss";
 import { Link } from "react-router-dom";
 
-export const Table = ({ title, data }) => {
+export const Table = ({ title, data, showFooter = true }) => {
   const numberColStyle = {
     textAlign: "center",
   };
@@ -21,7 +21,7 @@ export const Table = ({ title, data }) => {
     const date = new Date(utcDate);
     return (
       <>
-        <Link to={`countries/${rowData.Slug}`}>{rowData.Country}</Link>
+        <Link to={`/countries/${rowData.Slug}`}>{rowData.Country}</Link>
         <span
           className="info-icon"
           data-tip={`Last updated: ${date.toLocaleDateString()}`}
@@ -41,7 +41,11 @@ export const Table = ({ title, data }) => {
     <div className="Table">
       <ReactTooltip place="right" />
       <h2>{title}</h2>
-      <DataTable value={data} autoLayout={true} footer={footerTemplate()}>
+      <DataTable
+        value={data}
+        autoLayout={true}
+        footer={showFooter ? footerTemplate() : false}
+      >
         <Column
           field="Country"
           header="Country"
