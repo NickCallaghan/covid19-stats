@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;500;900&display=swap");
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+body,
+.p-component {
+  font-family: Roboto, open-sans;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: rgba(255, 101, 19, 0.9);
+}
+
+h1 {
+  font-weight: 500;
+}
