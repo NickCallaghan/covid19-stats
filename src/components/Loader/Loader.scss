@@ -1,0 +1,34 @@
+.Loader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  min-height: 400px;
+
+  .Loader-text {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 3rem 0;
+    color: #56a5eb;
+  }
+
+  .Loader-spinner {
+    border: 1rem solid white;
+    border-radius: 50%;
+    border-top: 1rem solid #56a5eb;
+    width: 6rem;
+    height: 6rem;
+    animation: spin 1.4s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
