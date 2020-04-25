@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useSummary } from "../../hooks/useSummary";
 import { Table } from "../../components/Table/Table";
 import { NoCases } from "../../components/NoCases/NoCases";
 import { StatTile } from "../../components/StatTile/StatTile";
+import { Loader } from "../../components/Loader/Loader";
+
+import { SummaryContext } from "../../contexts/summary";
 
 import {
   topCountries,
@@ -12,7 +15,8 @@ import {
 
 export const Dashboard = () => {
   // const countries = useCountries();
-  const summary = useSummary({});
+
+  const summary = useContext(SummaryContext);
   const [mostEffected, setMostEffected] = useState([]);
   const [leastEffected, setLeastEffected] = useState([]);
   const [noCases, setNoCases] = useState([]);
@@ -25,7 +29,7 @@ export const Dashboard = () => {
     }
   }, [summary]);
 
-  if (!summary.Global) return <div id="loading"></div>;
+  if (!summary.Global) return <Loader />;
   return (
     <div className="App">
       <StatTile
