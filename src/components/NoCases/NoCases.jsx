@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "primereact/button";
 import "./NoCases.scss";
+import { Link } from "react-router-dom";
 
 export const NoCases = ({ countries }) => {
   return (
@@ -8,7 +9,9 @@ export const NoCases = ({ countries }) => {
       <h3>Countires with no reported cases</h3>
       <div className="NoCases-list">
         {countries.map((country, i) => (
-          <Button label={country.Country} key={i} />
+          <Link to={`countries/${country.Slug}`} key={`link-${i}`}>
+            <Button label={country.Country} key={i} />
+          </Link>
         ))}
       </div>
     </div>

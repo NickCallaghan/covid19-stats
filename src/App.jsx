@@ -26,7 +26,7 @@ const routes = (
     />
     <Route
       exact
-      path={`/countries/:country`}
+      path={`/countries/:slug`}
       render={(routeProps) => <CountryDetail {...routeProps} />}
     />
     <Route render={(routeProps) => <h1>Not Found</h1>} />
