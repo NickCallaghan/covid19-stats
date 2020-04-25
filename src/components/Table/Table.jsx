@@ -44,6 +44,7 @@ export const Table = ({ title, data, showFooter = true }) => {
       <DataTable
         value={data}
         autoLayout={true}
+        rowHover={true}
         footer={showFooter ? footerTemplate() : false}
       >
         <Column
