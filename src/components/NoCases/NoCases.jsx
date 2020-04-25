@@ -7,8 +7,8 @@ export const NoCases = ({ countries }) => {
     <div className="NoCases">
       <h3>Countires with no reported cases</h3>
       <div className="NoCases-list">
-        {countries.map((country) => (
-          <Button label={country.Country} />
+        {countries.map((country, i) => (
+          <Button label={country.Country} key={i} />
         ))}
       </div>
     </div>

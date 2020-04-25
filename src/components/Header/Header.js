@@ -3,7 +3,7 @@ import "./Header.scss";
 
 export const Header = () => {
   return (
-    <div class="Header">
+    <div className="Header">
       <h1 style={{ textAlign: "center" }}>
         <span>C</span>
         <svg

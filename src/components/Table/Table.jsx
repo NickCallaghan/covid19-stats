@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { DataTable, Column } from "primereact/datatable";
+import React from "react";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
 import { formatNumber } from "../../helpers/formatters";
 import "./Table.scss";
 
@@ -12,6 +13,7 @@ export const Table = ({ title, data }) => {
     return formatNumber(rowData[column]);
   };
 
+  if (data.length === 0) return <div>Loading</div>;
   return (
     <div className="Table">
       <h2>{title}</h2>
