@@ -1,13 +1,14 @@
 import React from "react";
+import { Loader } from "../Loader/Loader";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { formatNumber } from "../../helpers/formatters";
 import ReactTooltip from "react-tooltip";
 
-import "./Table.scss";
+import "./CountryTotalsTable.scss";
 import { Link } from "react-router-dom";
 
-export const Table = ({ title, data, showFooter = true }) => {
+export const CountryTotalsTable = ({ title, data, showFooter = true }) => {
   const numberColStyle = {
     textAlign: "center",
   };
@@ -36,7 +37,7 @@ export const Table = ({ title, data, showFooter = true }) => {
     return <Link to={`countries/`}>All Countries</Link>;
   };
 
-  if (data.length === 0) return <div>Loading</div>;
+  if (data.length === 0) return <Loader />;
   return (
     <div className="Table">
       <ReactTooltip place="right" />
@@ -54,19 +55,20 @@ export const Table = ({ title, data, showFooter = true }) => {
           body={(rowData) => countryColumnTemplate(rowData)}
         />
         <Column
-          field="TotalDeaths"
-          header="Total Deaths"
-          sortable={true}
-          style={numberColStyle}
-          body={(rowData) => numberTemplate(rowData, "TotalDeaths")}
-        />
-        <Column
           field="TotalConfirmed"
           header="Total Confirmed"
           sortable={true}
           style={numberColStyle}
           body={(rowData) => numberTemplate(rowData, "TotalConfirmed")}
         />
+        <Column
+          field="TotalDeaths"
+          header="Total Deaths"
+          sortable={true}
+          style={numberColStyle}
+          body={(rowData) => numberTemplate(rowData, "TotalDeaths")}
+        />
+
         <Column
           field="TotalRecovered"
           header="Total Recovered"

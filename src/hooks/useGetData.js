@@ -17,5 +17,5 @@ export const useGetData = (url) => {
     getData();
   }, [url]);
 
-  return;
+  return data;
 };

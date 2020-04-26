@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { Loader } from "../../components/Loader/Loader";
-import { Table } from "../../components/Table/Table";
+import { CountryTotalsTable } from "../../components/CountryTotalsTable/CountryTotalsTable";
 import { SummaryContext } from "../../contexts/summary";
 import Select from "react-select";
 
@@ -40,7 +40,7 @@ export const CountryList = () => {
         placeholder="Filter By Country"
         onInputChange={(e) => console.log(e)}
       />
-      <Table data={tableData} showFooter={false} />
+      <CountryTotalsTable data={tableData} showFooter={false} />
     </div>
   );
 };

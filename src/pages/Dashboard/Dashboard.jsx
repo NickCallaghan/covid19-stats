@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table } from "../../components/Table/Table";
+import { CountryTotalsTable } from "../../components/CountryTotalsTable/CountryTotalsTable";
 import { NoCases } from "../../components/NoCases/NoCases";
 import { Stats } from "../../components/Stats/Stats";
 import { Loader } from "../../components/Loader/Loader";
@@ -33,15 +33,20 @@ export const Dashboard = () => {
   if (!summary.Global) return <Loader />;
   const { TotalConfirmed, TotalDeaths, TotalRecovered } = summary.Global;
   return (
-    <div className="App">
+    <div className="Dashboard">
       <Stats
-        stats={summary.Global}
         totalConfirmed={TotalConfirmed}
         totalDeaths={TotalDeaths}
         totalRecovered={TotalRecovered}
       />
-      <Table title="Worst Effected Countries By Cases" data={mostEffected} />
-      <Table title="Least Effected Countries By Cases" data={leastEffected} />
+      <CountryTotalsTable
+        title="Worst Effected Countries By Cases"
+        data={mostEffected}
+      />
+      <CountryTotalsTable
+        title="Least Effected Countries By Cases"
+        data={leastEffected}
+      />
       <NoCases countries={noCases} />
     </div>
   );
