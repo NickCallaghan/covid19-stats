@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Loader } from "../../components/Loader/Loader";
 import { CountryTotalsTable } from "../../components/CountryTotalsTable/CountryTotalsTable";
 import { SummaryContext } from "../../contexts/summary";
@@ -10,7 +10,7 @@ export const CountryList = () => {
   const summary = useContext(SummaryContext);
   const [tableData, setTableData] = useState(null);
   const [selectOptions, setSelectOptions] = useState([]);
-  const countryFilter = useRef();
+  const [selectValue, setSelectValue] = useState([]);
 
   const makeSelectOptions = (countries) => {
     // takes the countries list return from api and builds select options
@@ -20,15 +20,43 @@ export const CountryList = () => {
         options.push({ label: country.Country, value: country.CountryCode });
       });
     }
-
     return options;
   };
 
+  const handleFilterChange = (value) => setSelectValue(value);
+
   useEffect(() => {
-    // Set tableData and select options once api response received
+    // Set tableData and select options once summary api response received
     setTableData(summary.Countries);
     setSelectOptions(makeSelectOptions(summary.Countries));
   }, [summary]);
+
+  useEffect(() => {
+    const filterTableData = () => {
+      const allCountryData = summary.Countries;
+      //Push a selected country codes into keys
+      const keys = [];
+      selectValue.forEach((val) => {
+        keys.push(val.value);
+      });
+      // Filter Country list to contain only countries with CountryCode in keys
+      const filteredData = allCountryData.filter((country) =>
+        keys.indexOf(country.CountryCode) > -1 ? country : null
+      );
+      // Set table data to only filtered data
+      setTableData(filteredData);
+    };
+
+    // Reset Table Data if Select contains no value
+    if (selectValue === null || selectValue.length === 0) {
+      setTableData(summary.Countries);
+      return;
+    }
+    // Set table data if filter is selected
+    if (selectValue.length > 0) {
+      filterTableData();
+    }
+  }, [selectValue, summary.Countries]);
 
   if (!tableData) return <Loader />;
   return (
@@ -38,7 +66,8 @@ export const CountryList = () => {
         options={selectOptions}
         isMulti
         placeholder="Filter By Country"
-        onInputChange={(e) => console.log(e)}
+        onChange={handleFilterChange}
+        value={selectValue}
       />
       <CountryTotalsTable data={tableData} showFooter={false} />
     </div>

@@ -2,7 +2,6 @@ import React from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { formatNumber } from "../../helpers/formatters";
-import { Link } from "react-router-dom";
 
 import "./DailyTotalsTable.scss";
 
