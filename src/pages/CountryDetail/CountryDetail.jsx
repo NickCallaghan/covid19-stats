@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { useCountries } from "../../hooks//useCountries";
+import { useSummary } from "../../hooks/useSummary";
+import { useGetData } from "../../hooks/useGetData";
 
 import { Loader } from "../../components/Loader/Loader";
 
 export const CountryDetail = (props) => {
   const { slug } = props.match.params;
-  const countries = useCountries();
+  const summary = useSummary();
   const [country, setCountry] = useState({});
+  const dayOneUrl = `https://api.covid19api.com/dayone/country/${slug}`;
+  const dayOne = useGetData(dayOneUrl);
 
   useEffect(() => {
     // Render
-    if (countries) {
-      setCountry(countries.find((country) => country.Slug === slug));
+    if (summary.Countries) {
+      setCountry(summary.Countries.find((country) => country.Slug === slug));
     }
-  }, [countries, slug]);
+  }, [summary, slug]);
 
   if (!country) return <Loader />;
   return (
