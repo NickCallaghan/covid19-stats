@@ -1,7 +1,14 @@
 .Table {
   margin: 4em 0;
+  display: flex;
+  flex-direction: column;
   h2 {
     text-align: center;
+  }
+
+  .Table-export-button {
+    margin: 1em 0;
+    margin-left: auto;
   }
 
   .info-icon {

@@ -38,7 +38,11 @@ export const CountryDetail = (props) => {
         totalRecovered={TotalRecovered}
       />
       <DailyBarChart data={dayOneNewData} title="Daily Deaths" />
-      <DailyTotalsTable data={dayOneNewData} />
+      <DailyTotalsTable
+        data={dayOneNewData}
+        title="Daily New Totals"
+        exportFileName={`DailyTotals-${country.Country}.csv`}
+      />
     </div>
   );
 };

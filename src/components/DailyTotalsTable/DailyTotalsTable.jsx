@@ -1,12 +1,19 @@
 import React from "react";
-import { Loader } from "../Loader/Loader";
+import { makeCSVData } from "../../helpers/csvHelper";
 import { DataTable } from "primereact/datatable";
+import { Button } from "primereact/button";
 import { Column } from "primereact/column";
 import { formatNumber } from "../../helpers/formatters";
+import { CSVLink } from "react-csv";
 
 import "./DailyTotalsTable.scss";
 
-export const DailyTotalsTable = ({ title, data, showFooter = false }) => {
+export const DailyTotalsTable = ({
+  title,
+  data,
+  showFooter = false,
+  exportFileName = "export.csv",
+}) => {
   const numberColStyle = {
     textAlign: "center",
   };
@@ -21,11 +28,25 @@ export const DailyTotalsTable = ({ title, data, showFooter = false }) => {
     return formatNumber(rowData[column]);
   };
 
+  const csvData = makeCSVData(data);
+
   if (data.length === 0) return null;
   return (
     <div className="Table">
       <h2>{title}</h2>
-      <DataTable value={data} autoLayout={true} rowHover={true}>
+      <CSVLink
+        className="Table-export-button"
+        data={csvData}
+        filename={exportFileName}
+      >
+        <Button label="Export as CSV" />
+      </CSVLink>
+      <DataTable
+        value={data}
+        title="Daily New Totals"
+        autoLayout={true}
+        rowHover={true}
+      >
         <Column
           field="Date"
           header="Date"
