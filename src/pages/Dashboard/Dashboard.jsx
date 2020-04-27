@@ -34,6 +34,7 @@ export const Dashboard = () => {
   const { TotalConfirmed, TotalDeaths, TotalRecovered } = summary.Global;
   return (
     <div className="Dashboard">
+      <h1>Global Stats</h1>
       <Stats
         totalConfirmed={TotalConfirmed}
         totalDeaths={TotalDeaths}

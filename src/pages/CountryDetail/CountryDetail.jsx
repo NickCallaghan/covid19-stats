@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Stats } from "../../components/Stats/Stats";
+import { DailyBarChart } from "../../components/DailyBarChart/DailyBarChart";
 import { DailyTotalsTable } from "../../components/DailyTotalsTable/DailyTotalsTable";
 import { useSummary } from "../../hooks/useSummary";
 import { useDayOne } from "../../hooks/useDayOne";
@@ -36,6 +37,7 @@ export const CountryDetail = (props) => {
         totalDeaths={TotalDeaths}
         totalRecovered={TotalRecovered}
       />
+      <DailyBarChart data={dayOneNewData} title="Daily Deaths" />
       <DailyTotalsTable data={dayOneNewData} />
     </div>
   );

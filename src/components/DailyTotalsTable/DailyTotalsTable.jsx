@@ -1,4 +1,5 @@
 import React from "react";
+import { Loader } from "../Loader/Loader";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { formatNumber } from "../../helpers/formatters";
@@ -20,7 +21,7 @@ export const DailyTotalsTable = ({ title, data, showFooter = false }) => {
     return formatNumber(rowData[column]);
   };
 
-  if (data.length === 0) return <div>Loading</div>;
+  if (data.length === 0) return null;
   return (
     <div className="Table">
       <h2>{title}</h2>
