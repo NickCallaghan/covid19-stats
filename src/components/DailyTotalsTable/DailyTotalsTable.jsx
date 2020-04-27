@@ -38,27 +38,27 @@ export const DailyTotalsTable = ({ title, data, showFooter = false }) => {
         />
 
         <Column
-          field="Confirmed"
-          header="Confirmed"
+          field="NewConfirmed"
+          header=" New Confirmed"
           sortable={true}
           style={numberColStyle}
-          body={(rowData) => numberTemplate(rowData, "Confirmed")}
+          body={(rowData) => numberTemplate(rowData, "NewConfirmed")}
         />
 
         <Column
-          field="Deaths"
-          header="Deaths"
+          field="NewDeaths"
+          header="New Deaths"
           sortable={true}
           style={numberColStyle}
-          body={(rowData) => numberTemplate(rowData, "Deaths")}
+          body={(rowData) => numberTemplate(rowData, "NewDeaths")}
         />
 
         <Column
-          field="Recovered"
-          header="Recovered"
+          field="NewRecovered"
+          header="New Recovered"
           sortable={true}
           style={numberColStyle}
-          body={(rowData) => numberTemplate(rowData, "Recovered")}
+          body={(rowData) => numberTemplate(rowData, "NewRecovered")}
         />
       </DataTable>
     </div>

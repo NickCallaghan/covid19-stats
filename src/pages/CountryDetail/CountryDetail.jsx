@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Stats } from "../../components/Stats/Stats";
 import { DailyTotalsTable } from "../../components/DailyTotalsTable/DailyTotalsTable";
 import { useSummary } from "../../hooks/useSummary";
-import { useGetData } from "../../hooks/useGetData";
+import { useDayOne } from "../../hooks/useDayOne";
+import { dayOneNewStats } from "../../helpers/dataHelper";
 
 import { Loader } from "../../components/Loader/Loader";
 
@@ -11,8 +12,8 @@ export const CountryDetail = (props) => {
   const summary = useSummary();
   const [country, setCountry] = useState({});
   const dayOneUrl = `https://api.covid19api.com/total/dayone/country/${slug}`;
-
-  const dayOne = useGetData(dayOneUrl);
+  const dayOneData = useDayOne(dayOneUrl);
+  const [dayOneNewData, setDayOneNewData] = useState([]);
 
   useEffect(() => {
     // Render
@@ -20,6 +21,10 @@ export const CountryDetail = (props) => {
       setCountry(summary.Countries.find((country) => country.Slug === slug));
     }
   }, [summary, slug]);
+
+  useEffect(() => {
+    setDayOneNewData(dayOneNewStats(dayOneData));
+  }, [dayOneData]);
 
   if (!country) return <Loader />;
   const { Country, TotalDeaths, TotalConfirmed, TotalRecovered } = country;
@@ -31,7 +36,7 @@ export const CountryDetail = (props) => {
         totalDeaths={TotalDeaths}
         totalRecovered={TotalRecovered}
       />
-      <DailyTotalsTable data={dayOne} />
+      <DailyTotalsTable data={dayOneNewData} />
     </div>
   );
 };

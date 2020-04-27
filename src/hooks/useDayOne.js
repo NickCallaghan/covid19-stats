@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export const useGetData = (url) => {
-  const [data, setData] = useState({});
+export const useDayOne = (url) => {
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
