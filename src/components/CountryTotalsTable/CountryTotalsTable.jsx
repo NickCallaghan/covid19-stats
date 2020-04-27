@@ -3,10 +3,13 @@ import { Loader } from "../Loader/Loader";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { formatNumber } from "../../helpers/formatters";
+import { Link } from "react-router-dom";
 import ReactTooltip from "react-tooltip";
+import { CSVLink } from "react-csv";
+import { Button } from "primereact/button";
+import { makeCSVData } from "../../helpers/csvHelper";
 
 import "./CountryTotalsTable.scss";
-import { Link } from "react-router-dom";
 
 export const CountryTotalsTable = ({ title, data, showFooter = true }) => {
   const numberColStyle = {
@@ -38,10 +41,20 @@ export const CountryTotalsTable = ({ title, data, showFooter = true }) => {
   };
 
   if (data.length === 0) return <Loader />;
+  const csvData = makeCSVData(data);
+  const exportFileName = `Export-AllCountries.csv`;
+
   return (
     <div className="Table">
       <ReactTooltip place="right" />
       <h2>{title}</h2>
+      <CSVLink
+        className="Table-export-button"
+        data={csvData}
+        filename={exportFileName}
+      >
+        <Button label="Export as CSV" />
+      </CSVLink>
       <DataTable
         value={data}
         autoLayout={true}

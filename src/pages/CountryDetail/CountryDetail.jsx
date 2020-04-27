@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Stats } from "../../components/Stats/Stats";
 import { DailyBarChart } from "../../components/DailyBarChart/DailyBarChart";
 import { DailyTotalsTable } from "../../components/DailyTotalsTable/DailyTotalsTable";
-import { useSummary } from "../../hooks/useSummary";
+import { SummaryContext } from "../../contexts/summary";
 import { useDayOne } from "../../hooks/useDayOne";
 import { dayOneNewStats } from "../../helpers/dataHelper";
 
@@ -10,20 +10,21 @@ import { Loader } from "../../components/Loader/Loader";
 
 export const CountryDetail = (props) => {
   const { slug } = props.match.params;
-  const summary = useSummary();
+  const summary = useContext(SummaryContext);
   const [country, setCountry] = useState({});
   const dayOneUrl = `https://api.covid19api.com/total/dayone/country/${slug}`;
   const dayOneData = useDayOne(dayOneUrl);
   const [dayOneNewData, setDayOneNewData] = useState([]);
 
   useEffect(() => {
-    // Render
+    // Set country data based on slug
     if (summary.Countries) {
       setCountry(summary.Countries.find((country) => country.Slug === slug));
     }
   }, [summary, slug]);
 
   useEffect(() => {
+    // Convert and set day one data
     setDayOneNewData(dayOneNewStats(dayOneData));
   }, [dayOneData]);
 
