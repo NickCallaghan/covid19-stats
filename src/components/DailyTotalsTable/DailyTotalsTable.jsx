@@ -5,32 +5,30 @@ import { Button } from "primereact/button";
 import { Column } from "primereact/column";
 import { formatNumber } from "../../helpers/formatters";
 import { CSVLink } from "react-csv";
+import { dateUTCtoLocaleString } from "../../helpers/formatters";
 
 import "./DailyTotalsTable.scss";
 
 export const DailyTotalsTable = ({
   title,
   data,
-  showFooter = false,
   exportFileName = "export.csv",
 }) => {
   const numberColStyle = {
     textAlign: "center",
   };
 
-  const dateColumnTemplate = (rowData) => {
-    const utcDate = rowData.Date;
-    const date = new Date(utcDate);
-    return <span>{date.toLocaleDateString()}</span>;
-  };
+  const dateColumnTemplate = (rowData) => (
+    <span>{dateUTCtoLocaleString(rowData.Date)}</span>
+  );
 
   const numberTemplate = (rowData, column) => {
     return formatNumber(rowData[column]);
   };
 
+  if (data.length === 0) return null;
   const csvData = makeCSVData(data);
 
-  if (data.length === 0) return null;
   return (
     <div className="Table">
       <h2>{title}</h2>

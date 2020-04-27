@@ -8,6 +8,7 @@ import ReactTooltip from "react-tooltip";
 import { CSVLink } from "react-csv";
 import { Button } from "primereact/button";
 import { makeCSVData } from "../../helpers/csvHelper";
+import { dateUTCtoLocaleString } from "../../helpers/formatters";
 
 import "./CountryTotalsTable.scss";
 
@@ -20,15 +21,13 @@ export const CountryTotalsTable = ({ title, data, showFooter = true }) => {
     return formatNumber(rowData[column]);
   };
 
-  const countryColumnTemplate = (rowData, column) => {
-    const utcDate = rowData.Date;
-    const date = new Date(utcDate);
+  const countryColumnTemplate = (rowData) => {
     return (
       <>
         <Link to={`/countries/${rowData.Slug}`}>{rowData.Country}</Link>
         <span
           className="info-icon"
-          data-tip={`Last updated: ${date.toLocaleDateString()}`}
+          data-tip={`Last updated: ${dateUTCtoLocaleString(rowData.Date)}`}
         >
           <i className="fas fa-info-circle"></i>
         </span>
@@ -42,12 +41,12 @@ export const CountryTotalsTable = ({ title, data, showFooter = true }) => {
 
   if (data.length === 0) return <Loader />;
   const csvData = makeCSVData(data);
-  const exportFileName = `Export-AllCountries.csv`;
+  const exportFileName = `Export-Countries.csv`;
 
   return (
     <div className="Table">
       <ReactTooltip place="right" />
-      <h2>{title}</h2>
+      {title && <h2>{title}</h2>}
       <CSVLink
         className="Table-export-button"
         data={csvData}
