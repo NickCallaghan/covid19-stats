@@ -24,12 +24,7 @@ export const DailyTotalsTable = ({ title, data, showFooter = false }) => {
   return (
     <div className="Table">
       <h2>{title}</h2>
-      <DataTable
-        value={data}
-        autoLayout={true}
-        rowHover={true}
-        // footer={showFooter ? footerTemplate() : false}
-      >
+      <DataTable value={data} autoLayout={true} rowHover={true}>
         <Column
           field="Date"
           header="Date"

@@ -13,7 +13,9 @@ export const StatTile = ({ title, stat, icon, color }) => {
         <i className={icon}></i>
       </div>
       <div className="StatTile-stats">
-        <div className="StatTile-stats-stat">{formatNumber(stat)}</div>
+        <div className="StatTile-stats-stat">
+          {stat ? formatNumber(stat) : "-"}
+        </div>
         <div className="StatTile-stats-title">{title}</div>
       </div>
     </div>
