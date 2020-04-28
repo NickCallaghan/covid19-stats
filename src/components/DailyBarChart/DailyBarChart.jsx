@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Chart } from "primereact/chart";
 import { extractSeries, makeLabelsDates } from "../../helpers/chart";
 import "./DailyBarChart.scss";

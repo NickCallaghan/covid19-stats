@@ -4,7 +4,6 @@ import { CountryDetail } from "./pages/CountryDetail/CountryDetail";
 import { CountryList } from "./pages/CountryList/CountryList";
 import { Switch, Route } from "react-router-dom";
 import { Header } from "./components/Header/Header";
-import { Wrapper } from "./components/Wrapper/Wrapper";
 
 import "primereact/resources/themes/nova-light/theme.css";
 import "primereact/resources/primereact.min.css";
