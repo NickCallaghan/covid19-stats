@@ -3,6 +3,8 @@ import { CountryTotalsTable } from "../../components/CountryTotalsTable/CountryT
 import { NoCases } from "../../components/NoCases/NoCases";
 import { Stats } from "../../components/Stats/Stats";
 import { Loader } from "../../components/Loader/Loader";
+import { Wrapper } from "../../components/Wrapper/Wrapper";
+import { BreadCrumb } from "primereact/breadcrumb";
 
 import { SummaryContext } from "../../contexts/summary";
 
@@ -20,6 +22,12 @@ export const Dashboard = () => {
   const [leastEffected, setLeastEffected] = useState([]);
   const [noCases, setNoCases] = useState([]);
 
+  //Breadcrumbs
+  const home = {
+    icon: "pi pi-home",
+    url: "/",
+  };
+
   // Widget data sets updated when api sucessfully called
   useEffect(() => {
     if (summary.Countries && summary.Countries.length) {
@@ -34,25 +42,28 @@ export const Dashboard = () => {
   const { TotalConfirmed, TotalDeaths, TotalRecovered } = summary.Global;
   return (
     <div className="Dashboard">
-      <h1>Global Stats</h1>
-      <Stats
-        totalConfirmed={TotalConfirmed}
-        totalDeaths={TotalDeaths}
-        totalRecovered={TotalRecovered}
-      />
-      <CountryTotalsTable
-        title="Worst Effected Countries By Cases"
-        data={mostEffected}
-        sortField="TotalConfirmed"
-        sortOrder={-1}
-      />
-      <CountryTotalsTable
-        title="Least Effected Countries By Cases"
-        data={leastEffected}
-        sortField="TotalConfirmed"
-        sortOrder={1}
-      />
-      <NoCases countries={noCases} />
+      <BreadCrumb home={home} />
+      <Wrapper>
+        <h1>Global Stats</h1>
+        <Stats
+          totalConfirmed={TotalConfirmed}
+          totalDeaths={TotalDeaths}
+          totalRecovered={TotalRecovered}
+        />
+        <CountryTotalsTable
+          title="Worst Effected Countries By Cases"
+          data={mostEffected}
+          sortField="TotalConfirmed"
+          sortOrder={-1}
+        />
+        <CountryTotalsTable
+          title="Least Effected Countries By Cases"
+          data={leastEffected}
+          sortField="TotalConfirmed"
+          sortOrder={1}
+        />
+        <NoCases countries={noCases} />
+      </Wrapper>
     </div>
   );
 };

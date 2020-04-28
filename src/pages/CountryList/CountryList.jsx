@@ -1,16 +1,25 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Loader } from "../../components/Loader/Loader";
+import { Wrapper } from "../../components/Wrapper/Wrapper";
 import { CountryTotalsTable } from "../../components/CountryTotalsTable/CountryTotalsTable";
 import { SummaryContext } from "../../contexts/summary";
 import Select from "react-select";
 
 import "./CountryList.scss";
+import { BreadCrumb } from "primereact/breadcrumb";
 
 export const CountryList = () => {
   const summary = useContext(SummaryContext);
   const [tableData, setTableData] = useState(null);
   const [selectOptions, setSelectOptions] = useState([]);
   const [selectValue, setSelectValue] = useState([]);
+
+  const breadCrumbs = [{ label: "Countries", url: "/countries" }];
+
+  const home = {
+    icon: "pi pi-home",
+    url: "/",
+  };
 
   const makeSelectOptions = (countries) => {
     // takes the countries list return from api and builds select options
@@ -61,15 +70,18 @@ export const CountryList = () => {
   if (!tableData) return <Loader />;
   return (
     <div>
-      <h1>All Countries</h1>
-      <Select
-        options={selectOptions}
-        isMulti
-        placeholder="Filter By Country"
-        onChange={handleFilterChange}
-        value={selectValue}
-      />
-      <CountryTotalsTable data={tableData} showFooter={false} />
+      <BreadCrumb model={breadCrumbs} home={home} />
+      <Wrapper>
+        <h1>All Countries</h1>
+        <Select
+          options={selectOptions}
+          isMulti
+          placeholder="Filter By Country"
+          onChange={handleFilterChange}
+          value={selectValue}
+        />
+        <CountryTotalsTable data={tableData} showFooter={false} />
+      </Wrapper>
     </div>
   );
 };

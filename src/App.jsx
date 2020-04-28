@@ -37,7 +37,7 @@ function App() {
   return (
     <div>
       <Header />
-      <Wrapper>{routes}</Wrapper>
+      {routes}
     </div>
   );
 }

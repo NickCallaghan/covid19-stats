@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Stats } from "../../components/Stats/Stats";
+import { Wrapper } from "../../components/Wrapper/Wrapper";
 import {
   DailyBarChart,
   buildDailyDeaths,
@@ -9,6 +10,7 @@ import { DailyTotalsTable } from "../../components/DailyTotalsTable/DailyTotalsT
 import { SummaryContext } from "../../contexts/summary";
 import { useDayOne } from "../../hooks/useDayOne";
 import { dayOneNewStats } from "../../helpers/dataHelper";
+import { BreadCrumb } from "primereact/breadcrumb";
 
 import { Loader } from "../../components/Loader/Loader";
 
@@ -21,6 +23,16 @@ export const CountryDetail = (props) => {
   const [dayOneNewData, setDayOneNewData] = useState([]);
   const [deathsChartData, setDeathsChartData] = useState({});
   const [casesChartData, setCasesChartData] = useState({});
+
+  const breadCrumbs = [
+    { label: "Countries", url: "/countries" },
+    { label: country.Country },
+  ];
+
+  const home = {
+    icon: "pi pi-home",
+    url: "/",
+  };
 
   useEffect(() => {
     // Set country data based on slug
@@ -43,19 +55,22 @@ export const CountryDetail = (props) => {
   const { Country, TotalDeaths, TotalConfirmed, TotalRecovered } = country;
   return (
     <div>
-      <h1>{Country}</h1>
-      <Stats
-        totalConfirmed={TotalConfirmed}
-        totalDeaths={TotalDeaths}
-        totalRecovered={TotalRecovered}
-      />
-      <DailyBarChart data={deathsChartData} title="Daily Deaths" />
-      <DailyBarChart data={casesChartData} title="Daily New Cases" />
-      <DailyTotalsTable
-        data={dayOneNewData}
-        title="Daily New Totals"
-        exportFileName={`DailyTotals-${country.Country}.csv`}
-      />
+      <BreadCrumb model={breadCrumbs} home={home} />
+      <Wrapper>
+        <h1>{Country}</h1>
+        <Stats
+          totalConfirmed={TotalConfirmed}
+          totalDeaths={TotalDeaths}
+          totalRecovered={TotalRecovered}
+        />
+        <DailyBarChart data={deathsChartData} title="Daily Deaths" />
+        <DailyBarChart data={casesChartData} title="Daily New Cases" />
+        <DailyTotalsTable
+          data={dayOneNewData}
+          title="Daily New Totals"
+          exportFileName={`DailyTotals-${country.Country}.csv`}
+        />
+      </Wrapper>
     </div>
   );
 };
