@@ -44,6 +44,8 @@ export const DailyTotalsTable = ({
         title="Daily New Totals"
         autoLayout={true}
         rowHover={true}
+        sortField="Date"
+        sortOrder={-1}
       >
         <Column
           field="Date"
