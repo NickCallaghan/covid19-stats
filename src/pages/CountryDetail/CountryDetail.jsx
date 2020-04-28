@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Stats } from "../../components/Stats/Stats";
-import { DailyBarChart } from "../../components/DailyBarChart/DailyBarChart";
+import {
+  DailyBarChart,
+  buildDailyDeaths,
+  buildDailyCases,
+} from "../../components/DailyBarChart/DailyBarChart";
 import { DailyTotalsTable } from "../../components/DailyTotalsTable/DailyTotalsTable";
 import { SummaryContext } from "../../contexts/summary";
 import { useDayOne } from "../../hooks/useDayOne";
@@ -15,6 +19,8 @@ export const CountryDetail = (props) => {
   const dayOneUrl = `https://api.covid19api.com/total/dayone/country/${slug}`;
   const dayOneData = useDayOne(dayOneUrl);
   const [dayOneNewData, setDayOneNewData] = useState([]);
+  const [deathsChartData, setDeathsChartData] = useState({});
+  const [casesChartData, setCasesChartData] = useState({});
 
   useEffect(() => {
     // Set country data based on slug
@@ -28,6 +34,11 @@ export const CountryDetail = (props) => {
     setDayOneNewData(dayOneNewStats(dayOneData));
   }, [dayOneData]);
 
+  useEffect(() => {
+    setDeathsChartData(buildDailyDeaths(dayOneNewData));
+    setCasesChartData(buildDailyCases(dayOneNewData));
+  }, [dayOneNewData]);
+
   if (!country) return <Loader />;
   const { Country, TotalDeaths, TotalConfirmed, TotalRecovered } = country;
   return (
@@ -38,7 +49,8 @@ export const CountryDetail = (props) => {
         totalDeaths={TotalDeaths}
         totalRecovered={TotalRecovered}
       />
-      <DailyBarChart data={dayOneNewData} title="Daily Deaths" />
+      <DailyBarChart data={deathsChartData} title="Daily Deaths" />
+      <DailyBarChart data={casesChartData} title="Daily New Cases" />
       <DailyTotalsTable
         data={dayOneNewData}
         title="Daily New Totals"

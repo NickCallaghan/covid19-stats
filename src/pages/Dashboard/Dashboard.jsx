@@ -43,10 +43,14 @@ export const Dashboard = () => {
       <CountryTotalsTable
         title="Worst Effected Countries By Cases"
         data={mostEffected}
+        sortField="TotalConfirmed"
+        sortOrder={-1}
       />
       <CountryTotalsTable
         title="Least Effected Countries By Cases"
         data={leastEffected}
+        sortField="TotalConfirmed"
+        sortOrder={1}
       />
       <NoCases countries={noCases} />
     </div>

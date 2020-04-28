@@ -12,7 +12,13 @@ import { dateUTCtoLocaleString } from "../../helpers/formatters";
 
 import "./CountryTotalsTable.scss";
 
-export const CountryTotalsTable = ({ title, data, showFooter = true }) => {
+export const CountryTotalsTable = ({
+  title,
+  data,
+  sortField,
+  sortOrder,
+  showFooter = true,
+}) => {
   const numberColStyle = {
     textAlign: "center",
   };
@@ -58,8 +64,8 @@ export const CountryTotalsTable = ({ title, data, showFooter = true }) => {
         value={data}
         autoLayout={true}
         rowHover={true}
-        sortField="TotalConfirmed"
-        sortOrder={-1}
+        sortField={sortField}
+        sortOrder={sortOrder}
         footer={showFooter ? footerTemplate() : false}
       >
         <Column

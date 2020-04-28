@@ -1,55 +1,54 @@
 import React, { useState, useEffect } from "react";
 import { Chart } from "primereact/chart";
-
-import { dateUTCtoLocaleString } from "../../helpers/formatters";
+import { extractSeries, makeLabelsDates } from "../../helpers/chart";
 import "./DailyBarChart.scss";
 
-// make Chart Date Labels
-const makeLabelsDates = (data) => {
-  const labels = [];
-  data.forEach((row) => {
-    labels.push(dateUTCtoLocaleString(row.Date));
-  });
-  return labels;
+// Bulids the data set for the Daily Deaths Bar Chart
+export const buildDailyDeaths = (data) => {
+  const labels = makeLabelsDates(data);
+  const chartDataDeaths = extractSeries(data, "NewDeaths");
+  const deathsDataSet = buildDataSet("New Deaths", "#eb5757", chartDataDeaths);
+  const options = buildOptions(labels, deathsDataSet);
+  return options;
 };
 
-// Extract Data Series for chart
-const extractSeries = (data, columnName) => {
-  const chartData = [];
-  data.forEach((row) => {
-    chartData.push(row[columnName]);
-  });
-  return chartData;
+// Bulids the data set for the Daily Confirmed Cases Bar Chart
+export const buildDailyCases = (data) => {
+  const labels = makeLabelsDates(data);
+  const chartDataCases = extractSeries(data, "NewConfirmed");
+  const casesDataSet = buildDataSet(
+    "New Confirmed Cases",
+    "#f2994a",
+    chartDataCases
+  );
+  const options = buildOptions(labels, casesDataSet);
+  return options;
+};
+
+// Build Data set to be inlcuded in chart options
+const buildDataSet = (label, backgroundColor, data) => {
+  const dataset = {
+    label,
+    backgroundColor,
+    data: [...data],
+  };
+  return dataset;
+};
+
+// Builds Chart Data to be passed in on data prop
+const buildOptions = (labels, ...data) => {
+  const options = {
+    labels,
+    datasets: [...data],
+  };
+  return options;
 };
 
 export const DailyBarChart = ({ data, title }) => {
-  const [chartLabels, setChartLabels] = useState([]);
-  const [chartDataDeaths, setChartDataDeaths] = useState([]);
-
-  const options = {
-    labels: chartLabels,
-    datasets: [
-      {
-        label: "Deaths",
-        backgroundColor: "#eb5757",
-        data: chartDataDeaths,
-      },
-    ],
-  };
-
-  useEffect(() => {
-    if (data) {
-      const labels = makeLabelsDates(data);
-      const chartDataDeaths = extractSeries(data, "NewDeaths");
-      setChartLabels(labels);
-      setChartDataDeaths(chartDataDeaths);
-    }
-  }, [data]);
-
   return (
     <div className="DailyBarChart">
       <h3>{title}</h3>
-      <Chart type="bar" data={options} />
+      <Chart type="bar" data={data} />
     </div>
   );
 };
