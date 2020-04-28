@@ -64,8 +64,8 @@ export const CountryTotalsTable = ({
         value={data}
         autoLayout={true}
         rowHover={true}
-        sortField={sortField}
-        sortOrder={sortOrder}
+        sortField="TotalConfirmed"
+        sortOrder={-1}
         footer={showFooter ? footerTemplate() : false}
       >
         <Column
