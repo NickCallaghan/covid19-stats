@@ -1,5 +1,5 @@
 import React from "react";
-import { Dashboard } from "./pages/Dashboard/Dashboard";
+import Dashboard from "./pages/Dashboard/Dashboard";
 import { CountryDetail } from "./pages/CountryDetail/CountryDetail";
 import { CountryList } from "./pages/CountryList/CountryList";
 import { Switch, Route } from "react-router-dom";

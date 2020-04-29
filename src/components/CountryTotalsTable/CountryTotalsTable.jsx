@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Loader } from "../Loader/Loader";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
@@ -12,7 +12,7 @@ import { dateUTCtoLocaleString } from "../../helpers/formatters";
 
 import "./CountryTotalsTable.scss";
 
-export const CountryTotalsTable = ({
+const CountryTotalsTable = ({
   title,
   data,
   sortField,
@@ -100,3 +100,5 @@ export const CountryTotalsTable = ({
     </div>
   );
 };
+
+export default memo(CountryTotalsTable);

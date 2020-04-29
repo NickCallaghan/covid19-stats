@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Button } from "primereact/button";
 import "./NoCases.scss";
 import { Link } from "react-router-dom";
@@ -17,3 +17,5 @@ export const NoCases = ({ countries }) => {
     </div>
   );
 };
+
+export default memo(NoCases);

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Stats } from "../../components/Stats/Stats";
+import Stats from "../../components/Stats/Stats";
 import { Wrapper } from "../../components/Wrapper/Wrapper";
 import {
   DailyBarChart,
