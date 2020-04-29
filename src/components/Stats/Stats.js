@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import { StatTile } from "../StatTile/StatTile";
 import "./Stats.scss";
 
-export const Stats = ({ totalDeaths, totalConfirmed, totalRecovered }) => {
+const Stats = ({ totalDeaths, totalConfirmed, totalRecovered }) => {
   return (
     <div className="Stats">
       <StatTile
@@ -26,3 +26,4 @@ export const Stats = ({ totalDeaths, totalConfirmed, totalRecovered }) => {
     </div>
   );
 };
+export default memo(Stats);

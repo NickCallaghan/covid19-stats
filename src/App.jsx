@@ -1,7 +1,6 @@
 import React from "react";
-import { Dashboard } from "./pages/Dashboard/Dashboard";
+import Dashboard from "./pages/Dashboard/Dashboard";
 import { CountryDetail } from "./pages/CountryDetail/CountryDetail";
-import { MapPage } from "./pages/MapPage/MapPage";
 import { CountryList } from "./pages/CountryList/CountryList";
 import { Switch, Route } from "react-router-dom";
 import { Header } from "./components/Header/Header";
@@ -28,11 +27,6 @@ const routes = (
       exact
       path={`/countries/:slug`}
       render={(routeProps) => <CountryDetail {...routeProps} />}
-    />
-    <Route
-      exact
-      path={`/map`}
-      render={(routeProps) => <MapPage {...routeProps} />}
     />
     <Route render={(routeProps) => <h1>Not Found</h1>} />
   </Switch>

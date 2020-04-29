@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Loader } from "../../components/Loader/Loader";
 import { Wrapper } from "../../components/Wrapper/Wrapper";
-import { CountryTotalsTable } from "../../components/CountryTotalsTable/CountryTotalsTable";
+import CountryTotalsTable from "../../components/CountryTotalsTable/CountryTotalsTable";
 import { SummaryContext } from "../../contexts/summary";
 import Select from "react-select";
 

@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useContext } from "react";
-import { CountryTotalsTable } from "../../components/CountryTotalsTable/CountryTotalsTable";
-import { NoCases } from "../../components/NoCases/NoCases";
-import { Stats } from "../../components/Stats/Stats";
+import React, { useState, useEffect, useContext, memo } from "react";
+import CountryTotalsTable from "../../components/CountryTotalsTable/CountryTotalsTable";
+import NoCases from "../../components/NoCases/NoCases";
+import Stats from "../../components/Stats/Stats";
 import { Loader } from "../../components/Loader/Loader";
-import { Wrapper } from "../../components/Wrapper/Wrapper";
+import Wrapper from "../../components/Wrapper/Wrapper";
+import Map from "../../components/Map/Map";
 import { BreadCrumb } from "primereact/breadcrumb";
+import ReactTooltip from "react-tooltip";
 
 import { SummaryContext } from "../../contexts/summary";
 
@@ -14,13 +16,14 @@ import {
   noCasesCountries,
 } from "../../helpers/dataHelper";
 
-export const Dashboard = () => {
+const Dashboard = () => {
   const summary = useContext(SummaryContext); //Summary data for all countries
 
   // Widget data sets
   const [mostEffected, setMostEffected] = useState([]);
   const [leastEffected, setLeastEffected] = useState([]);
   const [noCases, setNoCases] = useState([]);
+  const [mapTooltip, setMapTooltip] = useState("");
 
   //Breadcrumbs
   const home = {
@@ -50,6 +53,9 @@ export const Dashboard = () => {
           totalDeaths={TotalDeaths}
           totalRecovered={TotalRecovered}
         />
+        <Map setTooltipContent={setMapTooltip} />
+        <ReactTooltip>{mapTooltip}</ReactTooltip>
+
         <CountryTotalsTable
           title="Worst Effected Countries By Cases"
           data={mostEffected}
@@ -62,8 +68,11 @@ export const Dashboard = () => {
           sortField="TotalConfirmed"
           sortOrder={1}
         />
+
         <NoCases countries={noCases} />
       </Wrapper>
     </div>
   );
 };
+
+export default memo(Dashboard);
