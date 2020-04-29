@@ -51,7 +51,7 @@ const Map = ({ setTooltipContent }) => {
 
   return (
     <div className="Map">
-      <h2>Map showing global cases</h2>
+      <h2>Global Cases Map</h2>
       <ComposableMap
         className="Map-container"
         data-tip=""
