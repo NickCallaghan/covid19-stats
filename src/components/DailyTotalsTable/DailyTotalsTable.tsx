@@ -9,7 +9,15 @@ import { dateUTCtoLocaleString } from "../../helpers/formatters";
 
 import "./DailyTotalsTable.scss";
 
-export const DailyTotalsTable = ({
+import { DayOneDay, DayOneKey } from "../../types/types";
+
+type Props = {
+  title: string;
+  data: DayOneDay[];
+  exportFileName: string;
+};
+
+export const DailyTotalsTable: React.FC<Props> = ({
   title,
   data,
   exportFileName = "export.csv",
@@ -18,11 +26,11 @@ export const DailyTotalsTable = ({
     textAlign: "center",
   };
 
-  const dateColumnTemplate = (rowData) => (
+  const dateColumnTemplate = (rowData: DayOneDay) => (
     <span>{dateUTCtoLocaleString(rowData.Date)}</span>
   );
 
-  const numberTemplate = (rowData, column) => {
+  const numberTemplate = (rowData: DayOneDay, column: DayOneKey) => {
     return formatNumber(rowData[column]);
   };
 
@@ -41,7 +49,6 @@ export const DailyTotalsTable = ({
       </CSVLink>
       <DataTable
         value={data}
-        title="Daily New Totals"
         autoLayout={true}
         rowHover={true}
         sortField="Date"
@@ -51,7 +58,7 @@ export const DailyTotalsTable = ({
           field="Date"
           header="Date"
           sortable={true}
-          body={(rowData) => dateColumnTemplate(rowData)}
+          body={(rowData: DayOneDay) => dateColumnTemplate(rowData)}
         />
 
         <Column
@@ -59,7 +66,7 @@ export const DailyTotalsTable = ({
           header=" New Confirmed"
           sortable={true}
           style={numberColStyle}
-          body={(rowData) => numberTemplate(rowData, "NewConfirmed")}
+          body={(rowData: DayOneDay) => numberTemplate(rowData, "NewConfirmed")}
         />
 
         <Column
@@ -67,7 +74,7 @@ export const DailyTotalsTable = ({
           header="New Deaths"
           sortable={true}
           style={numberColStyle}
-          body={(rowData) => numberTemplate(rowData, "NewDeaths")}
+          body={(rowData: DayOneDay) => numberTemplate(rowData, "NewDeaths")}
         />
 
         <Column
@@ -75,7 +82,7 @@ export const DailyTotalsTable = ({
           header="New Recovered"
           sortable={true}
           style={numberColStyle}
-          body={(rowData) => numberTemplate(rowData, "NewRecovered")}
+          body={(rowData: DayOneDay) => numberTemplate(rowData, "NewRecovered")}
         />
       </DataTable>
     </div>
