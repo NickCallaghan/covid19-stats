@@ -9,13 +9,13 @@ import { CSVLink } from "react-csv";
 import { Button } from "primereact/button";
 import { makeCSVData } from "../../helpers/csvHelper";
 import { dateUTCtoLocaleString } from "../../helpers/formatters";
-import { Country, CountryKey } from "../../types/types";
+import { SummaryCountry, SummaryCountryKey } from "../../types/types";
 
 import "./CountryTotalsTable.scss";
 
 type Props = {
   title: string;
-  data: Country[];
+  data: SummaryCountry[];
   showFooter: boolean;
 };
 
@@ -28,11 +28,14 @@ const CountryTotalsTable: React.FC<Props> = ({
     textAlign: "center",
   };
 
-  const numberTemplate = (rowData: Country, column: CountryKey) => {
+  const numberTemplate = (
+    rowData: SummaryCountry,
+    column: SummaryCountryKey
+  ) => {
     return formatNumber(rowData[column]);
   };
 
-  const countryColumnTemplate = (rowData: Country) => {
+  const countryColumnTemplate = (rowData: SummaryCountry) => {
     return (
       <>
         <Link to={`/countries/${rowData.Slug}`}>{rowData.Country}</Link>
@@ -77,21 +80,25 @@ const CountryTotalsTable: React.FC<Props> = ({
           field="Country"
           header="Country"
           sortable={true}
-          body={(rowData: Country) => countryColumnTemplate(rowData)}
+          body={(rowData: SummaryCountry) => countryColumnTemplate(rowData)}
         />
         <Column
           field="TotalConfirmed"
           header="Total Confirmed"
           sortable={true}
           style={numberColStyle}
-          body={(rowData: Country) => numberTemplate(rowData, "Confirmed")}
+          body={(rowData: SummaryCountry) =>
+            numberTemplate(rowData, "TotalConfirmed")
+          }
         />
         <Column
           field="TotalDeaths"
           header="Total Deaths"
           sortable={true}
           style={numberColStyle}
-          body={(rowData: Country) => numberTemplate(rowData, "Deaths")}
+          body={(rowData: SummaryCountry) =>
+            numberTemplate(rowData, "TotalDeaths")
+          }
         />
 
         <Column
@@ -99,7 +106,9 @@ const CountryTotalsTable: React.FC<Props> = ({
           header="Total Recovered"
           sortable={true}
           style={numberColStyle}
-          body={(rowData: Country) => numberTemplate(rowData, "Recovered")}
+          body={(rowData: SummaryCountry) =>
+            numberTemplate(rowData, "TotalRecovered")
+          }
         />
       </DataTable>
     </div>

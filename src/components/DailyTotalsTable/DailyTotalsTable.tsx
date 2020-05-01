@@ -9,11 +9,11 @@ import { dateUTCtoLocaleString } from "../../helpers/formatters";
 
 import "./DailyTotalsTable.scss";
 
-import { Country, CountryKey } from "../../types/types";
+import { DayOneCountry, DayOneCountryKey } from "../../types/types";
 
 type Props = {
   title: string;
-  data: Country[];
+  data: DayOneCountry[];
   exportFileName: string;
 };
 
@@ -26,11 +26,11 @@ export const DailyTotalsTable: React.FC<Props> = ({
     textAlign: "center",
   };
 
-  const dateColumnTemplate = (rowData: Country) => (
+  const dateColumnTemplate = (rowData: DayOneCountry) => (
     <span>{dateUTCtoLocaleString(rowData.Date)}</span>
   );
 
-  const numberTemplate = (rowData: Country, column: CountryKey) => {
+  const numberTemplate = (rowData: DayOneCountry, column: DayOneCountryKey) => {
     return formatNumber(rowData[column]);
   };
 
@@ -58,7 +58,7 @@ export const DailyTotalsTable: React.FC<Props> = ({
           field="Date"
           header="Date"
           sortable={true}
-          body={(rowData: Country) => dateColumnTemplate(rowData)}
+          body={(rowData: DayOneCountry) => dateColumnTemplate(rowData)}
         />
 
         <Column
@@ -66,7 +66,9 @@ export const DailyTotalsTable: React.FC<Props> = ({
           header=" New Confirmed"
           sortable={true}
           style={numberColStyle}
-          body={(rowData: Country) => numberTemplate(rowData, "NewConfirmed")}
+          body={(rowData: DayOneCountry) =>
+            numberTemplate(rowData, "NewConfirmed")
+          }
         />
 
         <Column
@@ -74,7 +76,9 @@ export const DailyTotalsTable: React.FC<Props> = ({
           header="New Deaths"
           sortable={true}
           style={numberColStyle}
-          body={(rowData: Country) => numberTemplate(rowData, "NewDeaths")}
+          body={(rowData: DayOneCountry) =>
+            numberTemplate(rowData, "NewDeaths")
+          }
         />
 
         <Column
@@ -82,7 +86,9 @@ export const DailyTotalsTable: React.FC<Props> = ({
           header="New Recovered"
           sortable={true}
           style={numberColStyle}
-          body={(rowData: Country) => numberTemplate(rowData, "NewRecovered")}
+          body={(rowData: DayOneCountry) =>
+            numberTemplate(rowData, "NewRecovered")
+          }
         />
       </DataTable>
     </div>

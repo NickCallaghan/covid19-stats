@@ -2,10 +2,10 @@ import React from "react";
 import { Chart } from "primereact/chart";
 import { extractSeries, makeLabelsDates } from "../../helpers/chart";
 import "./DailyBarChart.scss";
-import { Country } from "../../types/types";
+import { DayOneCountry } from "../../types/types";
 
 // Bulids the data set for the Daily Deaths Bar Chart
-export const buildDailyDeaths = (data: Country[]) => {
+export const buildDailyDeaths = (data: DayOneCountry[]) => {
   const labels = makeLabelsDates(data);
   const chartDataDeaths = extractSeries(data, "NewDeaths");
   const deathsDataSet = buildDataSet("New Deaths", "#eb5757", chartDataDeaths);
@@ -14,7 +14,7 @@ export const buildDailyDeaths = (data: Country[]) => {
 };
 
 // Bulids the data set for the Daily Confirmed Cases Bar Chart
-export const buildDailyCases = (data: Country[]) => {
+export const buildDailyCases = (data: DayOneCountry[]) => {
   const labels = makeLabelsDates(data);
   const chartDataCases = extractSeries(data, "NewConfirmed");
   const casesDataSet = buildDataSet(
@@ -50,7 +50,7 @@ const buildOptions = (labels: string[], data: {}) => {
 };
 
 type Props = {
-  data: Country[];
+  data: DayOneCountry[];
   title: string;
 };
 

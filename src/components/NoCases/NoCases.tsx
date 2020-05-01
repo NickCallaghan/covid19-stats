@@ -2,10 +2,10 @@ import React, { memo } from "react";
 import { Button } from "primereact/button";
 import "./NoCases.scss";
 import { Link } from "react-router-dom";
-import { Country } from "../../types/types";
+import { SummaryCountry } from "../../types/types";
 
 type Props = {
-  countries: Country[];
+  countries: SummaryCountry[];
 };
 
 export const NoCases: React.FC<Props> = ({ countries }) => {
