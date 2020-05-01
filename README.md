@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Demo site available [here](https://nervous-almeida-3456f1.netlify.app/).
 
 ## Available Scripts
 
