@@ -6,6 +6,11 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "@types/jest": "^25.2.1",
+    "@types/node": "^13.13.4",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.7",
+    "@types/react-router-dom": "^5.1.5",
     "axios": "^0.19.2",
     "chart.js": "^2.9.3",
     "classnames": "^2.2.6",
@@ -19,7 +24,8 @@
     "react-scripts": "3.4.1",
     "react-select": "^3.1.0",
     "react-simple-maps": "^2.0.0",
-    "react-tooltip": "^4.2.5"
+    "react-tooltip": "^4.2.5",
+    "typescript": "^3.8.3"
   },
   "scripts": {
     "start": "react-scripts start",

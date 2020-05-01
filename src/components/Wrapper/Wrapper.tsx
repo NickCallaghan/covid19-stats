@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import "./Wrapper.scss";
 
-export const Wrapper = ({ children }) => {
+export const Wrapper: React.FC = ({ children }) => {
   return <div className="Wrapper">{children}</div>;
 };
 

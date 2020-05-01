@@ -2,7 +2,14 @@ import React from "react";
 import "./StatTile.scss";
 import { formatNumber } from "../../helpers/formatters";
 
-export const StatTile = ({ title, stat, icon, color }) => {
+type Props = {
+  title: string;
+  stat: string;
+  icon: string;
+  color: string;
+};
+
+export const StatTile: React.FC<Props> = ({ title, stat, icon, color }) => {
   const tileStyles = {
     backgroundColor: color,
   };

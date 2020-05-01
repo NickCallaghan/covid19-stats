@@ -2,8 +2,13 @@ import React, { memo } from "react";
 import { Button } from "primereact/button";
 import "./NoCases.scss";
 import { Link } from "react-router-dom";
+import { country } from "../types/types";
 
-export const NoCases = ({ countries }) => {
+type Props = {
+  countries: country[];
+};
+
+export const NoCases: React.FC<Props> = ({ countries }) => {
   return (
     <div className="NoCases">
       <h3>Countries with no reported cases</h3>

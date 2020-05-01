@@ -2,7 +2,17 @@ import React, { memo } from "react";
 import { StatTile } from "../StatTile/StatTile";
 import "./Stats.scss";
 
-const Stats = ({ totalDeaths, totalConfirmed, totalRecovered }) => {
+type Props = {
+  totalDeaths: string;
+  totalConfirmed: string;
+  totalRecovered: string;
+};
+
+const Stats: React.FC<Props> = ({
+  totalDeaths,
+  totalConfirmed,
+  totalRecovered,
+}) => {
   return (
     <div className="Stats">
       <StatTile
