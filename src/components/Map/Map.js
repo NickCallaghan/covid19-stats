@@ -95,11 +95,15 @@ const Map = ({ setTooltipContent }) => {
       </ComposableMap>
       {/* Flex box map controls container */}
       <div className="controls">
-        <button className="button-reset" onClick={handleReset}>
+        <button
+          aria-label="Reset Map Zoom"
+          className="button-reset"
+          onClick={handleReset}
+        >
           Reset
         </button>
         <div className="zoomControls">
-          <button onClick={handleZoomIn}>
+          <button aria-label="Zoom Map In" onClick={handleZoomIn}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -112,7 +116,7 @@ const Map = ({ setTooltipContent }) => {
               <line x1="5" y1="12" x2="19" y2="12" />
             </svg>
           </button>
-          <button onClick={handleZoomOut}>
+          <button aria-label="Zoom Map Out" onClick={handleZoomOut}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"

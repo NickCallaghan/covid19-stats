@@ -19,6 +19,7 @@ export const CountryList = () => {
   const home = {
     icon: "pi pi-home",
     url: "/",
+    label: "Home",
   };
 
   const makeSelectOptions = (countries) => {

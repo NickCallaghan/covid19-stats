@@ -29,6 +29,7 @@ const Dashboard = () => {
   const home = {
     icon: "pi pi-home",
     url: "/",
+    label: "Home",
   };
 
   // Widget data sets updated when api sucessfully called

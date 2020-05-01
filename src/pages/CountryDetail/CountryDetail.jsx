@@ -32,6 +32,7 @@ export const CountryDetail = (props) => {
   const home = {
     icon: "pi pi-home",
     url: "/",
+    label: "Home",
   };
 
   useEffect(() => {
