@@ -2,9 +2,10 @@ import React from "react";
 import { Chart } from "primereact/chart";
 import { extractSeries, makeLabelsDates } from "../../helpers/chart";
 import "./DailyBarChart.scss";
+import { DayOneDay } from "../../types/types";
 
 // Bulids the data set for the Daily Deaths Bar Chart
-export const buildDailyDeaths = (data) => {
+export const buildDailyDeaths = (data: DayOneDay[]) => {
   const labels = makeLabelsDates(data);
   const chartDataDeaths = extractSeries(data, "NewDeaths");
   const deathsDataSet = buildDataSet("New Deaths", "#eb5757", chartDataDeaths);
@@ -13,7 +14,7 @@ export const buildDailyDeaths = (data) => {
 };
 
 // Bulids the data set for the Daily Confirmed Cases Bar Chart
-export const buildDailyCases = (data) => {
+export const buildDailyCases = (data: DayOneDay[]) => {
   const labels = makeLabelsDates(data);
   const chartDataCases = extractSeries(data, "NewConfirmed");
   const casesDataSet = buildDataSet(
@@ -26,7 +27,11 @@ export const buildDailyCases = (data) => {
 };
 
 // Build Data set to be inlcuded in chart options
-const buildDataSet = (label, backgroundColor, data) => {
+const buildDataSet = (
+  label: string,
+  backgroundColor: string,
+  data: number[]
+) => {
   const dataset = {
     label,
     backgroundColor,
@@ -36,15 +41,20 @@ const buildDataSet = (label, backgroundColor, data) => {
 };
 
 // Builds Chart Data to be passed in on data prop
-const buildOptions = (labels, ...data) => {
+const buildOptions = (labels: string[], data: {}) => {
   const options = {
     labels,
-    datasets: [...data],
+    datasets: [data],
   };
   return options;
 };
 
-export const DailyBarChart = ({ data, title }) => {
+type Props = {
+  data: DayOneDay[];
+  title: string;
+};
+
+export const DailyBarChart: React.FC<Props> = ({ data, title }) => {
   return (
     <div className="DailyBarChart">
       <h3>{title}</h3>
