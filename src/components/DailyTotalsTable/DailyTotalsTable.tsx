@@ -9,11 +9,11 @@ import { dateUTCtoLocaleString } from "../../helpers/formatters";
 
 import "./DailyTotalsTable.scss";
 
-import { DayOneDay, DayOneKey } from "../../types/types";
+import { Country, CountryKey } from "../../types/types";
 
 type Props = {
   title: string;
-  data: DayOneDay[];
+  data: Country[];
   exportFileName: string;
 };
 
@@ -26,11 +26,11 @@ export const DailyTotalsTable: React.FC<Props> = ({
     textAlign: "center",
   };
 
-  const dateColumnTemplate = (rowData: DayOneDay) => (
+  const dateColumnTemplate = (rowData: Country) => (
     <span>{dateUTCtoLocaleString(rowData.Date)}</span>
   );
 
-  const numberTemplate = (rowData: DayOneDay, column: DayOneKey) => {
+  const numberTemplate = (rowData: Country, column: CountryKey) => {
     return formatNumber(rowData[column]);
   };
 
@@ -58,7 +58,7 @@ export const DailyTotalsTable: React.FC<Props> = ({
           field="Date"
           header="Date"
           sortable={true}
-          body={(rowData: DayOneDay) => dateColumnTemplate(rowData)}
+          body={(rowData: Country) => dateColumnTemplate(rowData)}
         />
 
         <Column
@@ -66,7 +66,7 @@ export const DailyTotalsTable: React.FC<Props> = ({
           header=" New Confirmed"
           sortable={true}
           style={numberColStyle}
-          body={(rowData: DayOneDay) => numberTemplate(rowData, "NewConfirmed")}
+          body={(rowData: Country) => numberTemplate(rowData, "NewConfirmed")}
         />
 
         <Column
@@ -74,7 +74,7 @@ export const DailyTotalsTable: React.FC<Props> = ({
           header="New Deaths"
           sortable={true}
           style={numberColStyle}
-          body={(rowData: DayOneDay) => numberTemplate(rowData, "NewDeaths")}
+          body={(rowData: Country) => numberTemplate(rowData, "NewDeaths")}
         />
 
         <Column
@@ -82,7 +82,7 @@ export const DailyTotalsTable: React.FC<Props> = ({
           header="New Recovered"
           sortable={true}
           style={numberColStyle}
-          body={(rowData: DayOneDay) => numberTemplate(rowData, "NewRecovered")}
+          body={(rowData: Country) => numberTemplate(rowData, "NewRecovered")}
         />
       </DataTable>
     </div>

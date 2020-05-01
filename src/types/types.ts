@@ -1,24 +1,20 @@
-export type DayOneDay = {
+export type Country = {
   Active: number;
   City: string;
   CityCode: string;
   Confirmed: number;
-  NewConfirmed: number;
+  NewConfirmed?: number;
   Country: string;
+  Slug: string;
   CountryCode: string;
   Date: string;
   Deaths: number;
-  NewDeaths: number;
+  NewDeaths?: number;
   Lat: string;
   Lon: string;
   Province: string;
   Recovered: number;
-  NewRecovered: number;
+  NewRecovered?: number;
 };
 
-export type DayOneKey = keyof DayOneDay;
-
-export type Country = {
-  Slug: string;
-  Country: string;
-};
+export type CountryKey = keyof Country;

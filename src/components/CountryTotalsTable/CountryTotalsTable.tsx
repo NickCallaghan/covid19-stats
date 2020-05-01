@@ -9,25 +9,30 @@ import { CSVLink } from "react-csv";
 import { Button } from "primereact/button";
 import { makeCSVData } from "../../helpers/csvHelper";
 import { dateUTCtoLocaleString } from "../../helpers/formatters";
+import { Country, CountryKey } from "../../types/types";
 
 import "./CountryTotalsTable.scss";
 
-const CountryTotalsTable = ({
+type Props = {
+  title: string;
+  data: Country[];
+  showFooter: boolean;
+};
+
+const CountryTotalsTable: React.FC<Props> = ({
   title,
   data,
-  sortField,
-  sortOrder,
   showFooter = true,
 }) => {
   const numberColStyle = {
     textAlign: "center",
   };
 
-  const numberTemplate = (rowData, column) => {
+  const numberTemplate = (rowData: Country, column: CountryKey) => {
     return formatNumber(rowData[column]);
   };
 
-  const countryColumnTemplate = (rowData) => {
+  const countryColumnTemplate = (rowData: Country) => {
     return (
       <>
         <Link to={`/countries/${rowData.Slug}`}>{rowData.Country}</Link>
@@ -72,21 +77,21 @@ const CountryTotalsTable = ({
           field="Country"
           header="Country"
           sortable={true}
-          body={(rowData) => countryColumnTemplate(rowData)}
+          body={(rowData: Country) => countryColumnTemplate(rowData)}
         />
         <Column
           field="TotalConfirmed"
           header="Total Confirmed"
           sortable={true}
           style={numberColStyle}
-          body={(rowData) => numberTemplate(rowData, "TotalConfirmed")}
+          body={(rowData: Country) => numberTemplate(rowData, "Confirmed")}
         />
         <Column
           field="TotalDeaths"
           header="Total Deaths"
           sortable={true}
           style={numberColStyle}
-          body={(rowData) => numberTemplate(rowData, "TotalDeaths")}
+          body={(rowData: Country) => numberTemplate(rowData, "Deaths")}
         />
 
         <Column
@@ -94,7 +99,7 @@ const CountryTotalsTable = ({
           header="Total Recovered"
           sortable={true}
           style={numberColStyle}
-          body={(rowData) => numberTemplate(rowData, "TotalRecovered")}
+          body={(rowData: Country) => numberTemplate(rowData, "Recovered")}
         />
       </DataTable>
     </div>
