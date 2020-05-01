@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export const useDayOne = (url) => {
+export const useDayOne = (url: string) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {

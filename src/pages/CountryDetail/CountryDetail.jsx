@@ -8,7 +8,7 @@ import {
 } from "../../components/DailyBarChart/DailyBarChart";
 import { DailyTotalsTable } from "../../components/DailyTotalsTable/DailyTotalsTable";
 import { SummaryContext } from "../../contexts/summary";
-import { useDayOne } from "../../hooks/useDayOne";
+import { useDayOne } from "../../hooks/useDayOne.tsx";
 import { dayOneNewStats } from "../../helpers/dataHelper";
 import { BreadCrumb } from "primereact/breadcrumb";
 
