@@ -7,16 +7,19 @@ import {
 } from "react-simple-maps";
 import { SummaryContext } from "../../contexts/summary";
 
+import { SummaryCountry, Summary } from "../../types/types";
+
 import "./Map.scss";
 
 // The goemoetries describe the different map shapes and the countries they relate to
 const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 
-// Generates the tooltip text for a given geometry
-
-const Map = ({ setTooltipContent }) => {
-  const summary = useContext(SummaryContext);
+type Props = {
+  setTooltipContent: (tip: string | undefined) => void;
+};
+const Map: React.FC<Props> = ({ setTooltipContent }) => {
+  const summary: Summary = useContext(SummaryContext);
   const [position, setPosition] = useState({ coordinates: [0, 0], zoom: 1 });
 
   //Zoom out map
@@ -36,7 +39,11 @@ const Map = ({ setTooltipContent }) => {
     setPosition({ coordinates: [0, 0], zoom: 1 });
   };
 
-  const generateTooltip = (iso2, countries) => {
+  // Generates the tooltip text for a given geometry
+  const generateTooltip = (
+    iso2: string | undefined,
+    countries: SummaryCountry[]
+  ) => {
     if (countries) {
       const country = countries.find((country) => country.CountryCode === iso2);
       if (!country) return "Unknown Country";
@@ -57,7 +64,7 @@ const Map = ({ setTooltipContent }) => {
         data-tip=""
         projectionConfig={{ scale: 200 }}
       >
-        <ZoomableGroup zoom={position.zoom} center={position.coordinates}>
+        <ZoomableGroup zoom={position.zoom} center={[0, 0]}>
           <Geographies geography={geoUrl}>
             {({ geographies }) =>
               geographies.map((geo) => (

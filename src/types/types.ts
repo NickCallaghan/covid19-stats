@@ -36,3 +36,16 @@ export type SummaryCountry = {
 };
 
 export type SummaryCountryKey = keyof SummaryCountry;
+
+// Summary type as returned by Summary API endpoint -- https://api.covid19api.com/summary
+export type Summary = {
+  Global: {
+    NewConfirmed: number;
+    TotalConfirmed: number;
+    NewDeaths: number;
+    TotalDeaths: number;
+    NewRecovered: number;
+    TotalRecovered: number;
+  };
+  Countries: SummaryCountry[];
+};
