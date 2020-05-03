@@ -31,7 +31,7 @@ export const DailyTotalsTable: React.FC<Props> = ({
   );
 
   const numberTemplate = (rowData: DayOneCountry, column: DayOneCountryKey) => {
-    return formatNumber(rowData[column]);
+    return formatNumber(rowData[column] as number);
   };
 
   if (data.length === 0) return null;
