@@ -1,4 +1,6 @@
-export const topCountries = (numResults, data) => {
+import { SummaryCountry, DayOneCountry } from "../types/types";
+
+export const topCountries = (numResults: number, data: SummaryCountry[]) => {
   const sortedData = [...data];
   sortedData
     .sort((a, b) => b.TotalConfirmed - a.TotalConfirmed)
@@ -6,7 +8,7 @@ export const topCountries = (numResults, data) => {
   return sortedData;
 };
 
-export const bottomCountries = (numResults, data) => {
+export const bottomCountries = (numResults: number, data: SummaryCountry[]) => {
   let sortedData = [...data].filter((country) => country.TotalConfirmed > 0);
   sortedData
     .sort((a, b) => a.TotalConfirmed - b.TotalConfirmed)
@@ -14,18 +16,18 @@ export const bottomCountries = (numResults, data) => {
   return sortedData;
 };
 
-export const noCasesCountries = (data) => {
+export const noCasesCountries = (data: SummaryCountry[]) => {
   const filteredData = data.filter((country) => country.TotalConfirmed === 0);
   return filteredData;
 };
 
-export const dayOneNewStats = (data) => {
+export const dayOneNewStats = (data: DayOneCountry[]) => {
   // Takes the day one data and add fields for NewDeaths, NewRecovered, NewActive
-  const newData = [];
+  const newData: DayOneCountry[] = [];
   data.forEach((day, i) => {
     if (i === 0) {
       // Push first row
-      const dayUpdated = {
+      const dayUpdated: DayOneCountry = {
         Country: day.Country,
         CountryCode: day.CountryCode,
         Province: day.Province,
@@ -42,6 +44,7 @@ export const dayOneNewStats = (data) => {
         Active: day.Active,
         NewActive: day.Active,
         Date: day.Date,
+        Slug: day.Slug,
       };
       newData.push(dayUpdated);
     } else {
@@ -63,6 +66,7 @@ export const dayOneNewStats = (data) => {
         Active: day.Active,
         NewActive: data[i].Active - data[i - 1].Active,
         Date: day.Date,
+        Slug: day.Slug,
       };
       newData.push(dayUpdated);
     }
