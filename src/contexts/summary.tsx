@@ -1,9 +1,11 @@
 import React, { createContext } from "react";
 import { useSummary } from "../hooks/useSummary";
 
-export const SummaryContext = createContext();
+import { Summary } from "../types/types";
 
-export const SummaryProvider = ({ children }) => {
+export const SummaryContext = createContext<Summary>({} as Summary);
+
+export const SummaryProvider: React.FC = ({ children }) => {
   const summary = useSummary();
 
   return (

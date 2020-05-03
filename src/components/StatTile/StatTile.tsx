@@ -21,7 +21,7 @@ export const StatTile: React.FC<Props> = ({ title, stat, icon, color }) => {
       </div>
       <div className="StatTile-stats">
         <div className="StatTile-stats-stat">
-          {stat ? formatNumber(stat) : "-"}
+          {stat ? formatNumber(parseInt(stat)) : "-"}
         </div>
         <div className="StatTile-stats-title">{title}</div>
       </div>

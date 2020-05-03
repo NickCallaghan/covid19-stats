@@ -2,6 +2,7 @@
 // The oprional fields are added clientside
 export type DayOneCountry = {
   Active: number;
+  NewActive?: number;
   City: string;
   CityCode: string;
   Confirmed: number;

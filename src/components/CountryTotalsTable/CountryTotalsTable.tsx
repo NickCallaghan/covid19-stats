@@ -32,7 +32,7 @@ const CountryTotalsTable: React.FC<Props> = ({
     rowData: SummaryCountry,
     column: SummaryCountryKey
   ) => {
-    return formatNumber(rowData[column]);
+    return formatNumber(rowData[column] as number);
   };
 
   const countryColumnTemplate = (rowData: SummaryCountry) => {

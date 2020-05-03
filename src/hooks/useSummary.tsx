@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Summary } from "../types/types";
 
 export const useSummary = () => {
-  const [summary, setSummary] = useState({});
+  const [summary, setSummary] = useState({} as Summary);
 
   useEffect(() => {
     const getData = async () => {
