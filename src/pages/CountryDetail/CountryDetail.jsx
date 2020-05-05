@@ -17,8 +17,7 @@ export const CountryDetail = (props) => {
   const { slug } = props.match.params;
   const summary = useSummary();
   const [country, setCountry] = useState({});
-  const dayOneUrl = `https://api.covid19api.com/total/dayone/country/${slug}`;
-  const dayOneData = useDayOne(dayOneUrl);
+  const dayOneData = useDayOne(slug);
   const [dayOneNewData, setDayOneNewData] = useState([]);
   const [deathsChartData, setDeathsChartData] = useState({});
   const [casesChartData, setCasesChartData] = useState({});
