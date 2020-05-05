@@ -1,22 +1,21 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import Stats from "../../components/Stats/Stats";
 import { Wrapper } from "../../components/Wrapper/Wrapper";
+import { DailyTotalsTable } from "../../components/DailyTotalsTable/DailyTotalsTable";
+import { useDayOne } from "../../hooks/useDayOne.tsx";
+import { dayOneNewStats } from "../../helpers/dataHelper";
+import { BreadCrumb } from "primereact/breadcrumb";
+import { Loader } from "../../components/Loader/Loader";
+import { useSummary } from "../../hooks/useSummary";
 import {
   DailyBarChart,
   buildDailyDeaths,
   buildDailyCases,
 } from "../../components/DailyBarChart/DailyBarChart";
-import { DailyTotalsTable } from "../../components/DailyTotalsTable/DailyTotalsTable";
-import { SummaryContext } from "../../contexts/summary";
-import { useDayOne } from "../../hooks/useDayOne.tsx";
-import { dayOneNewStats } from "../../helpers/dataHelper";
-import { BreadCrumb } from "primereact/breadcrumb";
-
-import { Loader } from "../../components/Loader/Loader";
 
 export const CountryDetail = (props) => {
   const { slug } = props.match.params;
-  const summary = useContext(SummaryContext);
+  const summary = useSummary();
   const [country, setCountry] = useState({});
   const dayOneUrl = `https://api.covid19api.com/total/dayone/country/${slug}`;
   const dayOneData = useDayOne(dayOneUrl);
