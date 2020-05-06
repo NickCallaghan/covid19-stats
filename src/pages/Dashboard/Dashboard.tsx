@@ -1,12 +1,13 @@
-import React, { useState, useEffect, memo } from "react";
-import CountryTotalsTable from "../../components/CountryTotalsTable/CountryTotalsTable";
-import NoCases from "../../components/NoCases/NoCases";
-import Stats from "../../components/Stats/Stats";
-import { Loader } from "../../components/Loader/Loader";
-import Wrapper from "../../components/Wrapper/Wrapper";
-import Map from "../../components/Map/Map";
 import { BreadCrumb } from "primereact/breadcrumb";
+import { Loader } from "../../components/Loader/Loader";
+import { useSummary } from "../../hooks/useSummary";
+import CountryTotalsTable from "../../components/CountryTotalsTable/CountryTotalsTable";
+import Map from "../../components/Map/Map";
+import NoCases from "../../components/NoCases/NoCases";
+import React, { useState, useEffect, memo } from "react";
 import ReactTooltip from "react-tooltip";
+import Stats from "../../components/Stats/Stats";
+import Wrapper from "../../components/Wrapper/Wrapper";
 
 import {
   topCountries,
@@ -15,10 +16,9 @@ import {
 } from "../../helpers/dataHelper";
 
 import { SummaryCountry } from "../../types/types";
-import { useSummary } from "../../hooks/useSummary";
 
 const Dashboard: React.FC = () => {
-  const summary = useSummary();
+  const summary = useSummary(); // Fetch data from api
 
   // Widget data sets
   const [mostEffected, setMostEffected] = useState([] as SummaryCountry[]);
