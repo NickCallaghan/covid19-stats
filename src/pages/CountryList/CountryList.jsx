@@ -1,15 +1,15 @@
-import React, { useContext, useState, useEffect } from "react";
+import { BreadCrumb } from "primereact/breadcrumb";
 import { Loader } from "../../components/Loader/Loader";
+import { useSummary } from "../../hooks/useSummary";
 import { Wrapper } from "../../components/Wrapper/Wrapper";
 import CountryTotalsTable from "../../components/CountryTotalsTable/CountryTotalsTable";
-import { SummaryContext } from "../../contexts/summary";
+import React, { useState, useEffect } from "react";
 import Select from "react-select";
 
 import "./CountryList.scss";
-import { BreadCrumb } from "primereact/breadcrumb";
 
 export const CountryList = () => {
-  const summary = useContext(SummaryContext);
+  const summary = useSummary();
   const [tableData, setTableData] = useState(null);
   const [selectOptions, setSelectOptions] = useState([]);
   const [selectValue, setSelectValue] = useState([]);
