@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export const useDayOne = (url: string) => {
+export const useDayOne = (slug: string) => {
   const [data, setData] = useState([]);
+  const url = `https://api.covid19api.com/total/dayone/country/${slug}`;
 
   useEffect(() => {
     const getData = async () => {

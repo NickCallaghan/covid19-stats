@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Loader } from "../../components/Loader/Loader";
+import { useSummary } from "../../hooks/useSummary";
 import { Wrapper } from "../../components/Wrapper/Wrapper";
 import CountryTotalsTable from "../../components/CountryTotalsTable/CountryTotalsTable";
 import { SummaryCountry } from "../../types/types";
@@ -7,7 +8,6 @@ import { SummaryCountry } from "../../types/types";
 import Select from "react-select";
 
 import { BreadCrumb } from "primereact/breadcrumb";
-import { useSummary } from "../../hooks/useSummary";
 
 type selectLabel = {
   label: string;
