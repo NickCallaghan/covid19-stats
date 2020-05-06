@@ -1,8 +1,8 @@
-import React, { memo } from "react";
+import React from "react";
 import "./Wrapper.scss";
 
-export const Wrapper: React.FC = ({ children }) => {
-  return <div className="Wrapper">{children}</div>;
+export const Wrapper: React.FC = (props) => {
+  return <div className="Wrapper">{props.children}</div>;
 };
 
-export default memo(Wrapper);
+export default Wrapper;

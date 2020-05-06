@@ -16,7 +16,9 @@ import "./CountryTotalsTable.scss";
 type Props = {
   title: string;
   data: SummaryCountry[];
-  showFooter: boolean;
+  showFooter?: boolean;
+  sortField: string;
+  sortOrder: number;
 };
 
 const CountryTotalsTable: React.FC<Props> = ({

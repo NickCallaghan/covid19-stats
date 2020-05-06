@@ -4,7 +4,7 @@ import { formatNumber } from "../../helpers/formatters";
 
 type Props = {
   title: string;
-  stat: string;
+  stat: number;
   icon: string;
   color: string;
 };
@@ -21,7 +21,7 @@ export const StatTile: React.FC<Props> = ({ title, stat, icon, color }) => {
       </div>
       <div className="StatTile-stats">
         <div className="StatTile-stats-stat">
-          {stat ? formatNumber(parseInt(stat)) : "-"}
+          {stat ? formatNumber(stat) : "-"}
         </div>
         <div className="StatTile-stats-title">{title}</div>
       </div>
