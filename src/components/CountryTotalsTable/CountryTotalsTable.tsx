@@ -14,11 +14,11 @@ import { SummaryCountry, SummaryCountryKey } from "../../types/types";
 import "./CountryTotalsTable.scss";
 
 type Props = {
-  title: string;
+  title?: string;
   data: SummaryCountry[];
   showFooter?: boolean;
-  sortField: string;
-  sortOrder: number;
+  sortField?: string;
+  sortOrder?: number;
 };
 
 const CountryTotalsTable: React.FC<Props> = ({

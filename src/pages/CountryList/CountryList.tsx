@@ -1,18 +1,24 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Loader } from "../../components/Loader/Loader";
 import { Wrapper } from "../../components/Wrapper/Wrapper";
 import CountryTotalsTable from "../../components/CountryTotalsTable/CountryTotalsTable";
-import { SummaryContext } from "../../contexts/summary";
+import { SummaryCountry } from "../../types/types";
+
 import Select from "react-select";
 
-import "./CountryList.scss";
 import { BreadCrumb } from "primereact/breadcrumb";
+import { useSummary } from "../../hooks/useSummary";
+
+type selectLabel = {
+  label: string;
+  value: string;
+};
 
 export const CountryList = () => {
-  const summary = useContext(SummaryContext);
-  const [tableData, setTableData] = useState(null);
-  const [selectOptions, setSelectOptions] = useState([]);
-  const [selectValue, setSelectValue] = useState([]);
+  const summary = useSummary();
+  const [tableData, setTableData] = useState([] as SummaryCountry[]);
+  const [selectOptions, setSelectOptions] = useState([] as selectLabel[]);
+  const [selectValue, setSelectValue] = useState([] as selectLabel[]);
 
   const breadCrumbs = [{ label: "Countries", url: "/countries" }];
 
@@ -22,9 +28,10 @@ export const CountryList = () => {
     label: "Home",
   };
 
-  const makeSelectOptions = (countries) => {
+  const makeSelectOptions = (countries: SummaryCountry[]) => {
     // takes the countries list return from api and builds select options
-    const options = [];
+
+    const options: selectLabel[] = [];
     if (countries) {
       countries.forEach((country) => {
         options.push({ label: country.Country, value: country.CountryCode });
@@ -33,7 +40,7 @@ export const CountryList = () => {
     return options;
   };
 
-  const handleFilterChange = (value) => setSelectValue(value);
+  const handleFilterChange = (value: any) => setSelectValue(value);
 
   useEffect(() => {
     // Set tableData and select options once summary api response received
@@ -45,7 +52,7 @@ export const CountryList = () => {
     const filterTableData = () => {
       const allCountryData = summary.Countries;
       //Push a selected country codes into keys
-      const keys = [];
+      const keys: string[] = [];
       selectValue.forEach((val) => {
         keys.push(val.value);
       });
