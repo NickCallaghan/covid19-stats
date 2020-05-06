@@ -41,9 +41,9 @@ const Map: React.FC<Props> = ({ setTooltipContent }) => {
 
   // Generates the tooltip text for a given geometry
   const generateTooltip = (
-    iso2: string | undefined,
+    iso2: string,
     countries: SummaryCountry[]
-  ) => {
+  ): string => {
     if (countries) {
       const country = countries.find((country) => country.CountryCode === iso2);
       if (!country) return "Unknown Country";
@@ -54,6 +54,7 @@ const Map: React.FC<Props> = ({ setTooltipContent }) => {
       Recovered: ${country.TotalRecovered}
       `;
     }
+    return "Unable to fetch data";
   };
 
   return (

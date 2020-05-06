@@ -3,9 +3,9 @@ import { StatTile } from "../StatTile/StatTile";
 import "./Stats.scss";
 
 type Props = {
-  totalDeaths: string;
-  totalConfirmed: string;
-  totalRecovered: string;
+  totalDeaths: number;
+  totalConfirmed: number;
+  totalRecovered: number;
 };
 
 const Stats: React.FC<Props> = ({

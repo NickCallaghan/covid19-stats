@@ -15,14 +15,16 @@ import {
   noCasesCountries,
 } from "../../helpers/dataHelper";
 
-const Dashboard = () => {
-  const summary = useSummary(); //Summary data for all countries
+import { SummaryCountry } from "../../types/types";
+
+const Dashboard: React.FC = () => {
+  const summary = useSummary(); // Fetch data from api
 
   // Widget data sets
-  const [mostEffected, setMostEffected] = useState([]);
-  const [leastEffected, setLeastEffected] = useState([]);
-  const [noCases, setNoCases] = useState([]);
-  const [mapTooltip, setMapTooltip] = useState("");
+  const [mostEffected, setMostEffected] = useState([] as SummaryCountry[]);
+  const [leastEffected, setLeastEffected] = useState([] as SummaryCountry[]);
+  const [noCases, setNoCases] = useState([] as SummaryCountry[]);
+  const [mapTooltip, setMapTooltip] = useState("" as any); //
 
   //Breadcrumbs
   const home = {
@@ -55,7 +57,6 @@ const Dashboard = () => {
         />
         <Map setTooltipContent={setMapTooltip} />
         <ReactTooltip>{mapTooltip}</ReactTooltip>
-
         <CountryTotalsTable
           title="Worst Effected Countries By Cases"
           data={mostEffected}
@@ -68,7 +69,6 @@ const Dashboard = () => {
           sortField="TotalConfirmed"
           sortOrder={1}
         />
-
         <NoCases countries={noCases} />
       </Wrapper>
     </div>
